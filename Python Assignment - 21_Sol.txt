@@ -1,0 +1,266 @@
+Python Assignment - 21
+
+1. Add the current date to the text file today.txt as a string.
+
+Sol: Eg - from datetime import datetime
+
+current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+with open("today.txt", "a") as file:
+    file.write(current_date + "\n")
+
+Save this code to a Python file (e.g., add_date.py) and run it. It will add the current date and time to the today.txt file as a string. Make sure the add_date.py file is in the same directory as the today.txt file.
+
+
+2. Read the text file today.txt into the string today_string
+
+Sol: I can't access files on our system directly, but I can show you how to read a file into a string using Python. 
+     We can then adapt this code for your specific use case:-
+
+  Eg - with open("today.txt", "r") as file:
+    today_string = file.read()
+
+    print(today_string)
+
+Save this code to a Python file (e.g., read_file.py) and run it. It will read the contents of the today.txt file and store it in 
+the today_string variable. Make sure the read_file.py file is in the same directory as the today.txt file.
+
+
+3. Parse the date from today_string.
+
+Sol: To parse the date from the today_string using Python, you can use the datetime module.
+
+   Eg - from datetime import datetime
+
+# Assuming you have read the content of today.txt into today_string
+today_string = "2023-08-17 15:30:00"  # Replace with the actual content of today.txt
+
+# Parse the date from the string
+parsed_date = datetime.strptime(today_string, "%Y-%m-%d %H:%M:%S")
+
+print(parsed_date)
+
+
+Replace "2023-08-17 15:30:00" with the actual content you read from the today.txt file. The code will parse the date and time from
+ the string using the specified format, and you'll have a datetime object (parsed_date) that you can work with.
+
+
+4. List the files in your current directory
+
+Sol:If we need to list files in a directory using Python, you can use the os module. Here's an example code snippet that lists files 
+    in the current directory:-
+
+  Eg - import os
+
+files = os.listdir()  # Lists files in the current directory
+
+for file in files:
+    print(file)
+
+
+Save this code to a Python file (e.g., list_files.py) and run it. It will list the files in the directory where the script is located.
+
+
+5. Create a list of all of the files in your parent directory (minimum five files should be available).
+
+Sol: list files in a directory using Python, you can use the os module as shown in the previous response.
+      We can specify the path to the desired directory using os.listdir().
+
+   Eg - import os
+
+parent_directory = os.path.dirname(os.getcwd())
+files = os.listdir(parent_directory)
+
+for file in files:
+    print(file)
+
+
+This code will list the files in the parent directory of the directory where the script is located. Make sure to run this code in the
+ appropriate context and directory.
+
+
+
+6. Use multiprocessing to create three separate processes. Make each one wait a random number of
+   seconds between one and five, print the current time, and then exit.
+
+Sol: We can use the multiprocessing module in Python to create three separate processes that wait for a random number of seconds between 
+     one and five, print the current time, and then exit:-
+
+
+   Eg - import multiprocessing
+import time
+import random
+from datetime import datetime
+
+def worker():
+    wait_time = random.randint(1, 5)
+    print(f"Process {multiprocessing.current_process().name} waiting for {wait_time} seconds...")
+    time.sleep(wait_time)
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"Process {multiprocessing.current_process().name} finished at {current_time}")
+
+if __name__ == "__main__":
+    processes = []
+
+    for _ in range(3):
+        process = multiprocessing.Process(target=worker)
+        processes.append(process)
+        process.start()
+
+    for process in processes:
+        process.join()
+
+    print("All processes have finished.")
+
+Copy and save this code to a Python file (e.g., multiprocessing_example.py) and run it. It will create three separate processes, each of which waits for a random amount of time, prints the current time when finished, and then exits. The join() function is used to wait for all processes to finish before printing the final message.
+
+
+7. Create a date object of your day of birth.
+
+
+Sol: To create a date object in Python, you can do it like this:-
+
+   Eg - from datetime import date
+
+birth_date = date(year=2000, month=1, day=1)  # Replace with your desired birthdate
+print(birth_date)
+
+Replace the year, month, and day values with your actual birthdate. This code creates a date object representing the specified date.
+
+
+
+8. What day of the week was your day of birth?
+
+
+Sol: If we'd like to know the day of the week for a specific date, you can use the weekday() method of the date object in Python.
+
+   Eg - from datetime import date
+
+birth_date = date(year=2000, month=1, day=1)  # Replace with your desired birthdate
+day_of_week = birth_date.weekday()
+
+# The weekday() method returns 0 for Monday, 1 for Tuesday, and so on.
+days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+print(f"The day of the week for {birth_date} was {days[day_of_week]}.")
+
+
+Replace the year, month, and day values with the date you want to check. The code will output the day of the week for that date.
+
+
+9. When will you be (or when were you) 10,000 days old?
+
+Sol: We can calculate a date that is 10,000 days after a specific starting date using Python:-
+
+   Eg - from datetime import date, timedelta
+
+start_date = date(year=2023, month=8, day=17)  # Replace with your desired starting date
+days_to_add = 10000
+
+target_date = start_date + timedelta(days=days_to_add)
+print(f"A date 10,000 days after {start_date} is {target_date}.")
+
+Replace the year, month, and day values with your desired starting date. This code calculates a date that is 10,000 days after the
+ specified starting date and prints the result.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
